@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Personal Api App</title>
+
+	<link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body>
+
+	<div class='wrapper'>
+		<div class='container'>
+			<ul>
+				<li><a href='#/'>home</a></li>
+				<li><a href='#/me'>Me</a></li>
+				<li><a href='#/skills'>Skills</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<ng-view></ng-view>
+
+
+	<!--	Angular Core Library-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+
+	<!--	Angular basic router-->
+	<script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
+
+	<!--	Angular Ui-router-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+</body>
+
+<!--	Angular Module-->
+<script src="scripts/app.js"></script>
+
+<!--	angular controllers-->
+<script src="scripts/controller/homeController.js"></script>
+<script src="scripts/controller/meController.js"></script>
+<script src="scripts/controller/skillsController.js"></script>
+
+<!--	Angular Services-->
+<script src="scripts/services/skillsService.js"></script>
+
+</html>
