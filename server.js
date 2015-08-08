@@ -1,3 +1,4 @@
+/* global process */
 'use strict';
 
 //Step 1
@@ -16,7 +17,7 @@ var app = express();
 //##########################################
 //port:
 //##########################################
-var port = 8181;
+var port = process.argv[2] || 8181;
 
 //step 3
 //##########################################
@@ -63,47 +64,77 @@ app.get('/api/hobbies', function (req, res) {
 		});
 	}
 });
+//********************************************************************************************
+//GET api occupations (postman: /api/occupations?order=asc)
+// app.get('/api/occupations', function (req, res) {
+// 	if (req.query.order === 'asc') {
+// 		res.json({ occupations: occupations.sort() });
+// 	} 
+// 	else if (req.query.order === 'desc') {
+// 		res.json({ occupations: occupations.sort().reverse() });
+// 	} 
+// 	else {
+// 		res.json({ Occupations: occupations });
+// 	}
+// });
+// app.get('/api/occupations/latest', function (req, res) {
+// 	res.json({ latestOccupation: occupations[occupations.length - 1] })
+// });
+//#######################################################################
+//these both work ^ v
+//#######################################################################
+//GET api occupations (postman: /api/occupations?order=asc)
 app.get('/api/occupations', function (req, res) {
-	if (req.query.order === 'asc') {
-		res.json({
-			occupations: occupations.sort()
-		});
-	} else if (req.query.order === 'desc') {
-		res.json({
-			occupations: occupations.sort().reverse()
-		});
-	} else {
-		res.json({
-			Occupations: occupations
-		});
-	}
+	switch (req.query.order) {
+		case 'asc':
+			res.json({
+				occupations: occupations.sort()
+			});
+			break;
+		case 'desc':
+			res.json({
+				occupations: occupations.sort().reverse()
+			});
+			break;
+		default:
+			res.json({
+				Occupations: occupations
+			});
+	};
 });
+
 app.get('/api/occupations/latest', function (req, res) {
 	res.json({
-		mostRecentOccupation: occupations[occupations.length - 1]
+		latestOccupation: occupations[occupations.length - 1]
 	})
 });
+
+//********************************************************************************************
 
 //Step 2
 //##########################################
 //Starting Server:
 //##########################################
-app.listen(port, function(err) {
-	if(err) {
+app.listen(port, function (err) {
+	if (err) {
 		console.log(err);
-	}else{
+	} else {
 		console.log('Listening on port: ' + port);
 	}
 });
 
 
-var name = {name:'Brendan Dayley'};
-var location = {location: 'Provo, UT'};
+var name = {
+	name: 'Brendan Dayley'
+};
+var location = {
+	location: 'Provo, UT'
+};
 var hobbies = ['Programming', 'Airsoft', 'Rappelling', 'Jeeping', 'Hiking', 'Camping'];
 var occupations = [
-	'4th Dungeon Master of Zork', 
-	'Co-Author', 
-	'Big 5 Sporting Goods', 
-	'scout camp staff', 
+	'4th Dungeon Master of Zork',
+	'Co-Author',
+	'Big 5 Sporting Goods',
+	'Scout camp staff',
 	'Student At DevMountain'
 	];
