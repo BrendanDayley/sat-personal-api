@@ -134,6 +134,32 @@ app.post('/api/occupations', function (req, res) {
 	res.json({occupations: occupations});
 });
 
+//Step 5
+//GET - POST /api/skills: (Postman: /api/skills?experience=Intermediate)
+app.route('/api/skills')
+	.get(function(req, res){
+		switch (req.query.experience){
+			case 'Beginner':
+				res.json({skills: experience(skills, 'Beginner')})
+				break;
+			case 'Intermediate':
+				res.json({skills: experience(skills, 'Intermediate')})
+				break;
+			case 'Advanced':
+				res.json({skills: experience(skills, 'Advanced')})
+				break;
+			case 'Professional':
+				res.json({skills: experience(skills, 'Professional')})
+				break;
+			default:
+				res.json({skills: skills});
+		}
+		
+	})
+	.post(function(req, res){
+		
+	})
+
 //Step 2
 //##########################################
 //Starting Server:
@@ -150,10 +176,13 @@ app.listen(port, function (err) {
 var name = {
 	name: 'Brendan Dayley'
 };
+
 var location = {
 	location: 'Provo, UT'
 };
+
 var hobbies = ['Programming', 'Airsoft', 'Rappelling', 'Jeeping', 'Hiking', 'Camping'];
+
 var occupations = [
 	'4th Dungeon Master of Zork',
 	'Co-Author',
@@ -161,3 +190,38 @@ var occupations = [
 	'Scout camp staff',
 	'Student At DevMountain'
 	];
+	
+var skills = [
+	{
+		id: '1',
+		name: 'JavaScript',
+		experience: 'Intermediate',
+	},
+	{
+		id: '2',
+		name: 'AngularJS',
+		experience: 'Intermediate',
+	},
+	{
+		id: '3',
+		name: 'Jquery',
+		experience: 'Beginner',
+	},
+	{
+		id: '4',
+		name: 'NodeJS',
+		experience: 'Beginner',
+	},
+]
+
+var experience = function (arr, experience) {
+	var container = [];
+	for (var i = 0; i < arr.length; i++){
+		for (var key in arr[i]){
+			if (arr[i][key] === experience) {
+				container.push(arr[i]);
+			}
+		}
+	}
+	return container;
+};
