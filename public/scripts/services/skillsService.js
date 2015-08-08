@@ -1,3 +1,0 @@
-app.service('networkService', function () {
-
-});
