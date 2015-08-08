@@ -110,6 +110,29 @@ app.get('/api/occupations/latest', function (req, res) {
 });
 
 //********************************************************************************************
+//step 4
+//##########################################
+//post requests
+//##########################################
+//PUT /api/name:
+app.put('/api/name', function (req, res) {
+	name = req.body.name;
+	res.json(name);
+});
+//PUT /api/location:
+app.put('/api/location', function (req, res) {
+	location = req.body.location
+	res.json(location);
+});
+//POST /api/hobbies:
+app.post('/api/hobbies', function (req, res) {
+	hobbies.push(req.body.hobbies);
+	res.json({hobbies: hobbies});
+});
+app.post('/api/occupations', function (req, res) {
+	occupations.push(req.body.occupations);
+	res.json({occupations: occupations});
+});
 
 //Step 2
 //##########################################
