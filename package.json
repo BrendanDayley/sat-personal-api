@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/BrendanDayley/sat-personal-api/issues"
   },
-  "homepage": "https://github.com/BrendanDayley/sat-personal-api#readme"
+  "homepage": "https://github.com/BrendanDayley/sat-personal-api#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
